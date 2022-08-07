@@ -6,8 +6,7 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "ingresos")
+
 public class Ingresos implements Serializable{
 	
 	
