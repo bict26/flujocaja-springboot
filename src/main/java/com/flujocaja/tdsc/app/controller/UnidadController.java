@@ -41,10 +41,6 @@ public class UnidadController {
 		return ResponseEntity.ok(unidad);
 	}
 	
-	@PostMapping
-	public ResponseEntity<?> prueba (@RequestBody Unidad unidad){
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(unidadService.save(unidad));
-	}
+
 
 }
