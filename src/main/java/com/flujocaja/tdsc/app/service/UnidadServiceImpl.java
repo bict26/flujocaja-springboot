@@ -33,14 +33,14 @@ public class UnidadServiceImpl implements UnidadService {
 	@Override
 	@Transactional
 	public Unidad save(Unidad unidad) {
-		// TODO Auto-generated method stub
+	
 		return unidadRepository.save(unidad);
 	}
 
 	@Override
 	@Transactional
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		
 		unidadRepository.deleteById(id);
 	}
 	
