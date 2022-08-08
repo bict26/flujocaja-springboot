@@ -41,6 +41,5 @@ public class UnidadController {
 		return ResponseEntity.ok(unidad);
 	}
 	
- /*       holaa boris isaac   */
 
 }
