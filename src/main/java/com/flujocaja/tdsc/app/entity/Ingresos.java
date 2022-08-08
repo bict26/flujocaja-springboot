@@ -3,53 +3,101 @@ package com.flujocaja.tdsc.app.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+@Entity
+@Table(name = "Ingresos")
 public class Ingresos implements Serializable{
 	
 	
-	private int id_ingresos;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id_ingreso;
+	
+	/*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dni_id", referencedColumnName = "number") */
 	private int id_cuenta;
 	
+	@Column(nullable=false)
 	private Date fecha;
 	
+	@Column(nullable=true)
 	private float arrrendamiento;
 	
+	@Column(nullable=true)
 	private float venta_de_bienes;
 	
+	@Column(nullable=true)
+	private float venta_de_servicios;
+	
+	@Column(nullable=true)
 	private float tasas_y_derechos;
 	
+	@Column(nullable=true)
 	private float ingresos_varios;
 	
+	@Column(nullable=true)
 	private float transf_corrientes_gc;
 	
+	@Column(nullable=true)
 	private float transf_corrientes_er;
 	
+	@Column(nullable=true)
 	private float transf_corrientes_vigencia_anterior;
 	
+	@Column(nullable=true)
 	private float transf_de_capital;
 	
+	@Column(nullable=true)
 	private float aportes_de_capitral;
 	
+	@Column(nullable=true)
+	private float recuperacion_de_prestamos;
+	
+	@Column(nullable=true)
 	private float venta_de_activos_t;
 	
+	@Column(nullable=true)
 	private float transf_de_capital_periodo_anterior;
 	
+	@Column(nullable=true)
 	private float depositos_favor_terceros;
 	
+	@Column(nullable=true)
 	private float transf_recibidas;
 	
+	@Column(nullable=true)
 	private float total_ingresos;
 
-	public int getId_ingresos() {
-		return id_ingresos;
+
+	public float getVenta_de_servicios() {
+		return venta_de_servicios;
 	}
 
-	public void setId_ingresos(int id_ingresos) {
-		this.id_ingresos = id_ingresos;
+	public void setVenta_de_servicios(float venta_de_servicios) {
+		this.venta_de_servicios = venta_de_servicios;
+	}
+
+	public float getRecuperacion_de_prestamos() {
+		return recuperacion_de_prestamos;
+	}
+
+	public void setRecuperacion_de_prestamos(float recuperacion_de_prestamos) {
+		this.recuperacion_de_prestamos = recuperacion_de_prestamos;
+	}
+
+	public int getId_ingresos() {
+		return id_ingreso;
+	}
+
+	public void setId_ingresos(int id_ingreso) {
+		this.id_ingreso = id_ingreso;
 	}
 
 	public int getId_cuenta() {

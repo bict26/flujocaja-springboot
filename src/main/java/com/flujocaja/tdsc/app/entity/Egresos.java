@@ -3,23 +3,66 @@ package com.flujocaja.tdsc.app.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Egresos")
 public class Egresos implements Serializable{
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_egresos;
+	
+	/*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dni_id", referencedColumnName = "number") */
 	private int id_cuenta;
+	
+	@Column(nullable=false)
 	private Date fecha;
+	
+	@Column(nullable=true)
 	private String salario_neto;
+	
+	@Column(nullable=true)
 	private String cuota_obrera;
+	
+	@Column(nullable=true)
 	private String cuota_patronal;
+	
+	@Column(nullable=true)
 	private String servicios_no_personales;
+	
+	@Column(nullable=true)
 	private String materiales_suministros;
+	
+	@Column(nullable=true)
 	private String maquinaria_equipo;
+	
+	@Column(nullable=true)
 	private String inversion_financiera;
+	
+	@Column(nullable=true)
 	private String construcciones_por_contrato;
+	
+	@Column(nullable=true)
 	private String transf_recibidas;
+	
+	@Column(nullable=true)
 	private String auditoria_contraloria;
+	
+	@Column(nullable=true)
 	private String amortizacion_deuda;
+	
+	@Column(nullable=true)
 	private String vigencia_exp_co;
+	
+	
+	/* Get y Set */
 	public int getId_egresos() {
 		return id_egresos;
 	}
