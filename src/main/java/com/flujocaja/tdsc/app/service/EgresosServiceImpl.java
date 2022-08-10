@@ -1,7 +1,7 @@
 package com.flujocaja.tdsc.app.service;
 
 import java.util.Optional;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +21,15 @@ public class EgresosServiceImpl implements EgresosService{
 		
 		return egresosRepository.findAll();
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Egresos> findAll(Sort sort) {
+		
+		return egresosRepository.findAll(sort);
+	}
+
+	
 
 	@Override
 	@Transactional(readOnly = true)
