@@ -3,16 +3,47 @@ package com.flujocaja.tdsc.app.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
+@Entity
+@Table(name = "Colaborador")
 public class Colaborador implements Serializable{
 
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_colaborador;
+	
+	//@NotEmpty
 	private String nombre; 
+	
+	//@NotEmpty
 	private String apellido;
+	
+	
 	private String cargo;
+	
+	//@NotEmpty
+	//@Email
 	private String email; 
+	
+	//@NotEmpty
 	private String password; 
+	
+	
 	private int id_unidad;
+	
+	//@NotNull
+	//@Temporal(TemporalType.DATE)
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date last_login;
 	
 	
