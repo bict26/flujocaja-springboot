@@ -49,8 +49,8 @@ public class IngresosController {
 	// Read all ingresos
 	@GetMapping
 	public List<Ingresos> readAll () {
-	List<Ingresos> ingresos = StreamSupport.stream(ingresosService.findAll().spliterator(), false).collect(Collectors.toList());
-	return ingresos;
+		List<Ingresos> ingresos = StreamSupport.stream(ingresosService.findAll().spliterator(), false).collect(Collectors.toList());
+		return ingresos;
 	}
 
 }
