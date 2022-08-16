@@ -22,6 +22,12 @@ public class CuentasServiceImpl implements CuentaService{
 		return cuentasRepository.findAllByIdUnidad(id_unidad);
 	}
 
+	@Override
+	public Optional<Cuentas> findById(int id) {
+		// TODO Auto-generated method stub
+		return cuentasRepository.findById(id);
+	}
+
 	
 	
 }

@@ -17,4 +17,5 @@ public interface CuentaService {
 	@Query(value = "SELECT * FROM Cuentas WHERE id_unidad = ?1", nativeQuery = true)
 	List<Cuentas> findAllByIdUnidad(int id_unidad);
 	
+	public Optional<Cuentas> findById(int id);
 }

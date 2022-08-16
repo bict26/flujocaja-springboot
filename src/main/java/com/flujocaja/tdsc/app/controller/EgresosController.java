@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.flujocaja.tdsc.app.entity.Cuentas;
 import com.flujocaja.tdsc.app.entity.Egresos;
+import com.flujocaja.tdsc.app.service.CuentaService;
 import com.flujocaja.tdsc.app.service.EgresosService;
 
 @RestController
@@ -27,22 +30,29 @@ public class EgresosController {
 	@Autowired
 	private EgresosService egresosService;
 	
-	/*@PostMapping("/crear/{id_cuenta}")
-	public ResponseEntity<Egresos> create (@PathVariable int id_cuenta,@RequestBody Egresos egresos){
+	
+	@Autowired
+	private CuentaService cuentaService;
+	
+	@PostMapping("/crear")
+	public ResponseEntity<Egresos> create (@RequestBody Egresos egresos){
 		
-		Egresos id_cuentaEncontrado = egresosService.findById(id_cuenta);
+		Optional<Cuentas> cuenta = cuentaService.findById(egresos.getId_cuenta());
 		
-		if (id_cuentaEncontrado == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(!cuenta.isPresent()){
+			return ResponseEntity.notFound().build();
 		}
-		else {
+		
+		try {
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(egresosService.save(egresos));
+			
+		} catch(DataAccessException e) {
+			
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(egresosService.save(egresos));
-		
-	}*/
+		 
+	}
 	
 	
 	@GetMapping("/{id}")
