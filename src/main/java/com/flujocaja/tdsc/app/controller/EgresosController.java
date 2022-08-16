@@ -27,14 +27,32 @@ public class EgresosController {
 	@Autowired
 	private EgresosService egresosService;
 	
-	@PostMapping
-	public ResponseEntity<?> create (@RequestBody Egresos egresos){
+	/*
+	
+	@PostMapping("/crear/{id_cuenta}")
+	public ResponseEntity<Egresos> create (@PathVariable int id_cuenta,@RequestBody Egresos egresos){
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(egresosService.save(egresos));
+		Egresos id_cuentaEncontrado = EgresosService.findById(id_cuenta);
+		
+		if (id_cuentaEncontrado == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(egresosService.save(egresos));
+		}
+		
+		//return ResponseEntity.status(HttpStatus.CREATED).body(egresosService.save(egresos));
 		
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{id_cuenta}")
+	public ResponseEntity<Egresos> read(@PathVariable(value = "id_cuenta") Integer egresosId){
+		
+		
+	} */
+	
+	/* @GetMapping("/{id}")
 	public ResponseEntity<?> read(@PathVariable(value = "id") Integer egresosId){
 		
 		Optional<Egresos> egresos = egresosService.findById(egresosId);
@@ -44,7 +62,7 @@ public class EgresosController {
 		}
 		
 		return ResponseEntity.ok(egresos);
-	}
+	} */
 	
 	// Read all egresos
 	@GetMapping
