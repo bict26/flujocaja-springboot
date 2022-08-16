@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +49,11 @@ public class EgresosController {
 	// Read all egresos
 	@GetMapping
 	public List<Egresos> readAll () {
-	List<Egresos> egresos = StreamSupport.stream(egresosService.findAll().spliterator(), false).collect(Collectors.toList());
-	return egresos;
+		List<Egresos> egresos = StreamSupport
+				.stream(egresosService.findAll(Sort.by(Sort.Direction.ASC, "fecha")).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return egresos;
 	}
 
 }
