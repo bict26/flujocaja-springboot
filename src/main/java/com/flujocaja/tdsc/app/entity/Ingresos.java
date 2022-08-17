@@ -28,7 +28,7 @@ public class Ingresos implements Serializable{
 	private Date fecha;
 	
 	@Column(nullable=true)
-	private float arrrendamiento;
+	private float arrendamiento;
 	
 	@Column(nullable=true)
 	private float venta_de_bienes;
@@ -67,7 +67,7 @@ public class Ingresos implements Serializable{
 	private float transf_de_capital_periodo_anterior;
 	
 	@Column(nullable=true)
-	private float depositos_favor_terceros;
+	private float depositos_favor_terceros_ing;
 	
 	@Column(nullable=true)
 	private float transf_recibidas;
@@ -117,11 +117,11 @@ public class Ingresos implements Serializable{
 	}
 
 	public float getArrrendamiento() {
-		return arrrendamiento;
+		return arrendamiento;
 	}
 
 	public void setArrrendamiento(float arrrendamiento) {
-		this.arrrendamiento = arrrendamiento;
+		this.arrendamiento = arrrendamiento;
 	}
 
 	public float getVenta_de_bienes() {
@@ -205,11 +205,11 @@ public class Ingresos implements Serializable{
 	}
 
 	public float getDepositos_favor_terceros() {
-		return depositos_favor_terceros;
+		return depositos_favor_terceros_ing;
 	}
 
 	public void setDepositos_favor_terceros(float depositos_favor_terceros) {
-		this.depositos_favor_terceros = depositos_favor_terceros;
+		this.depositos_favor_terceros_ing = depositos_favor_terceros;
 	}
 
 	public float getTransf_recibidas() {
