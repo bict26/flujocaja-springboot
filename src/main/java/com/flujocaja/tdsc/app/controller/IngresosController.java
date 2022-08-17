@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.flujocaja.tdsc.app.entity.Cuentas;
 import com.flujocaja.tdsc.app.entity.Ingresos;
+import com.flujocaja.tdsc.app.service.CuentaService;
 import com.flujocaja.tdsc.app.service.IngresosService;
 
 @RestController
@@ -28,11 +31,30 @@ public class IngresosController {
 	@Autowired
 	private IngresosService ingresosService;
 	
-	@PostMapping
-	public ResponseEntity<?> create (@RequestBody Ingresos ingresos){
+	@Autowired
+	private CuentaService cuentaService;
+	
+	@PostMapping("/crear")
+	public ResponseEntity<Ingresos> create (@RequestBody Ingresos ingresos){
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(ingresosService.save(ingresos));
+		Optional<Cuentas> cuenta = cuentaService.findById(ingresos.getId_cuenta());
+		
+		if(!cuenta.isPresent()){
+			return ResponseEntity.notFound().build();
+		}
+		
+		try {
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(ingresosService.save(ingresos));
+			
+		} catch(DataAccessException e) {
+			
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		
 	}
+	
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> read(@PathVariable(value = "id") Integer ingresosId){
