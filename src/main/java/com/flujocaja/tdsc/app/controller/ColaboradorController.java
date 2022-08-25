@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/colaborador")
 public class ColaboradorController {
 
-	public ColaboradorController() {
-		
-	}
+	
 
 }

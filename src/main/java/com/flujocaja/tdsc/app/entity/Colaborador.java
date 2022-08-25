@@ -3,7 +3,10 @@ package com.flujocaja.tdsc.app.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 @Entity
@@ -28,14 +32,15 @@ public class Colaborador implements Serializable{
 	//@NotEmpty
 	private String apellido;
 	
+	private String username;
 	
-	private String cargo;
 	
-	//@NotEmpty
-	//@Email
+	private String roles;
+	
+	@Column(unique = true, nullable = false, length = 40)
 	private String email; 
 	
-	//@NotEmpty
+	@Column(nullable = false, length = 15)
 	private String password; 
 	
 	
@@ -65,11 +70,11 @@ public class Colaborador implements Serializable{
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public String getCargo() {
-		return cargo;
+	public String getRoles() {
+		return roles;
 	}
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 	public String getEmail() {
 		return email;
@@ -95,6 +100,14 @@ public class Colaborador implements Serializable{
 	public void setLast_login(Date last_login) {
 		this.last_login = last_login;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	
 	
 	
 	

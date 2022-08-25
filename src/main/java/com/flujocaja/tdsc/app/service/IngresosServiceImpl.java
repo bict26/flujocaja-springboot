@@ -35,6 +35,14 @@ public class IngresosServiceImpl implements IngresosService{
 	
 		return ingresosRepository.save(ingresos);
 	}
+	
+	@Override
+	public void update(Ingresos ingresos, int id) {
+		
+		Optional<Ingresos> ingreso = this.ingresosRepository.findById(id);
+		
+		
+	}
 
 	@Override
 	@Transactional
