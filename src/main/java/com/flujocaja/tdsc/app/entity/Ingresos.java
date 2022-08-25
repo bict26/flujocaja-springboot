@@ -92,11 +92,11 @@ public class Ingresos implements Serializable{
 		this.recuperacion_de_prestamos = recuperacion_de_prestamos;
 	}
 
-	public int getId_ingresos() {
+	public int getId_ingreso() {
 		return id_ingreso;
 	}
 
-	public void setId_ingresos(int id_ingreso) {
+	public void setId_ingreso(int id_ingreso) {
 		this.id_ingreso = id_ingreso;
 	}
 
@@ -116,12 +116,13 @@ public class Ingresos implements Serializable{
 		this.fecha = fecha;
 	}
 
-	public float getArrrendamiento() {
+
+	public float getArrendamiento() {
 		return arrendamiento;
 	}
 
-	public void setArrrendamiento(float arrrendamiento) {
-		this.arrendamiento = arrrendamiento;
+	public void setArrendamiento(float arrendamiento) {
+		this.arrendamiento = arrendamiento;
 	}
 
 	public float getVenta_de_bienes() {
@@ -204,13 +205,15 @@ public class Ingresos implements Serializable{
 		this.transf_de_capital_periodo_anterior = transf_de_capital_periodo_anterior;
 	}
 
-	public float getDepositos_favor_terceros() {
+
+	public float getDepositos_favor_terceros_ing() {
 		return depositos_favor_terceros_ing;
 	}
 
-	public void setDepositos_favor_terceros(float depositos_favor_terceros) {
-		this.depositos_favor_terceros_ing = depositos_favor_terceros;
-	}
+	public void setDepositos_favor_terceros_ing(float depositos_favor_terceros_ing) {
+		this.depositos_favor_terceros_ing = depositos_favor_terceros_ing;
+	}	
+
 
 	public float getTransf_recibidas() {
 		return transf_recibidas;

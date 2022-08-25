@@ -13,5 +13,7 @@ public interface IngresosService {
 	
 	public Ingresos save(Ingresos ingresos);
 	
+	public void update(Ingresos ingresos, int id);
+	
 	public void deleteById(Integer id);
 }
