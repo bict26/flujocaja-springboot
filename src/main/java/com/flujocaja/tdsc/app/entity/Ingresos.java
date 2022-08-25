@@ -116,6 +116,7 @@ public class Ingresos implements Serializable{
 		this.fecha = fecha;
 	}
 
+
 	public float getArrendamiento() {
 		return arrendamiento;
 	}
@@ -204,13 +205,15 @@ public class Ingresos implements Serializable{
 		this.transf_de_capital_periodo_anterior = transf_de_capital_periodo_anterior;
 	}
 
+
 	public float getDepositos_favor_terceros_ing() {
 		return depositos_favor_terceros_ing;
 	}
 
 	public void setDepositos_favor_terceros_ing(float depositos_favor_terceros_ing) {
 		this.depositos_favor_terceros_ing = depositos_favor_terceros_ing;
-	}
+	}	
+
 
 	public float getTransf_recibidas() {
 		return transf_recibidas;
