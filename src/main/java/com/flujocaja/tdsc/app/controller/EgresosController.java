@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flujocaja.tdsc.app.entity.Cuentas;
 import com.flujocaja.tdsc.app.entity.Egresos;
+import com.flujocaja.tdsc.app.entity.EgresosTemp;
 import com.flujocaja.tdsc.app.entity.Ingresos;
+import com.flujocaja.tdsc.app.repository.EgresosRepository;
 import com.flujocaja.tdsc.app.service.CuentaService;
 import com.flujocaja.tdsc.app.service.EgresosService;
 
@@ -35,6 +39,9 @@ public class EgresosController {
 	
 	@Autowired
 	private CuentaService cuentaService;
+	
+	@Autowired
+	private EgresosRepository egresosRepository;
 	
 	@PostMapping("/crear")
 	public ResponseEntity<Egresos> create (@RequestBody Egresos egresos){
@@ -102,5 +109,48 @@ public class EgresosController {
 		
 		return egresos;
 	}
+	
+	@GetMapping("/getegresos")
+	@ResponseBody
+	public List<Egresos> getEgresos(@RequestParam int id_cuenta, @RequestParam String fecha){
+	
+		List<Egresos> egresos = StreamSupport
+				.stream(egresosRepository.findEgresosByDate(id_cuenta, fecha).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		
+		return egresos;
+	}
+	
+	@GetMapping("/getegresosUnidad")
+	@ResponseBody
+	public List<Egresos> getEgresosUnidad(@RequestParam int id_unidad,@RequestParam String year){
+		List<Egresos> egresos = StreamSupport 
+				.stream(egresosRepository.findEgresosByUnidad(id_unidad, year).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return egresos;
+	}
+	
+	@GetMapping("/getegresosYear")
+	@ResponseBody
+	public List<Egresos> getEgresosYear(@RequestParam String year){
+		List<Egresos> egresos = StreamSupport
+				.stream(egresosRepository.findAllEgresosByYear(year).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return egresos;
+	}
+	
+	@GetMapping("/getegresosByDate")
+	@ResponseBody
+	public List<Egresos> getEgresosDate(@RequestParam int id_cuenta, String fecha){
+		List<Egresos> egresos = StreamSupport
+				.stream(egresosRepository.findEgresosByDateM(id_cuenta, fecha).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return egresos; 
+	}
+	
 
 }

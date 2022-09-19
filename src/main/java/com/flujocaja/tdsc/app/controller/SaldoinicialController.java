@@ -66,6 +66,14 @@ public class SaldoinicialController {
 		return ResponseEntity.ok(saldo_inicial);
 	}
 	
+	@GetMapping("/getlastsaldo_inicial")
+	@ResponseBody
+	public ResponseEntity<Saldo_inicial> getSaldo_inicial(@RequestParam int id_cuenta){
+		
+		Saldo_inicial saldo_inicial = saldoinicialRepository.findLastByAccount(id_cuenta);
+		
+		return ResponseEntity.ok(saldo_inicial);
+	}
 	
 
 }

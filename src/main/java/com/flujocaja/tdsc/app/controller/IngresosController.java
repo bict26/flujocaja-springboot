@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flujocaja.tdsc.app.entity.Cuentas;
 import com.flujocaja.tdsc.app.entity.Ingresos;
+import com.flujocaja.tdsc.app.repository.IngresosRepository;
 import com.flujocaja.tdsc.app.service.CuentaService;
 import com.flujocaja.tdsc.app.service.IngresosService;
 
@@ -34,6 +37,9 @@ public class IngresosController {
 	
 	@Autowired
 	private CuentaService cuentaService;
+	
+	@Autowired
+	private IngresosRepository ingresosRepository;
 	
 	@PostMapping("/crear")
 	public ResponseEntity<Ingresos> create (@RequestBody Ingresos ingresos){
@@ -95,6 +101,27 @@ public class IngresosController {
 	@GetMapping
 	public List<Ingresos> readAll () {
 		List<Ingresos> ingresos = StreamSupport.stream(ingresosService.findAll().spliterator(), false).collect(Collectors.toList());
+		return ingresos;
+	}
+	
+	@GetMapping("/getingresos")
+	@ResponseBody
+	public List<Ingresos> getIngresos(@RequestParam int id_cuenta, @RequestParam String fecha){
+		
+		List<Ingresos> ingresos = StreamSupport
+				.stream(ingresosRepository.findIngresosByDate(id_cuenta, fecha).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return ingresos; 
+	}
+	
+	@GetMapping("/getingresosUnidad")
+	@ResponseBody
+	public List<Ingresos> getIngresosUnidad(@RequestParam int id_unidad,@RequestParam String year){
+		List <Ingresos> ingresos = StreamSupport 
+				.stream(ingresosRepository.findIngresosByUnidad(id_unidad, year).spliterator(), false)
+				.collect(Collectors.toList());
+		
 		return ingresos;
 	}
 
