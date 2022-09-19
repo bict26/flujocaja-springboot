@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.flujocaja.tdsc.app.entity.Cuentas;
 import com.flujocaja.tdsc.app.entity.Egresos;
+import com.flujocaja.tdsc.app.entity.EgresosTemp;
 import com.flujocaja.tdsc.app.entity.Ingresos;
 import com.flujocaja.tdsc.app.repository.EgresosRepository;
 import com.flujocaja.tdsc.app.service.CuentaService;
@@ -120,5 +121,36 @@ public class EgresosController {
 		
 		return egresos;
 	}
+	
+	@GetMapping("/getegresosUnidad")
+	@ResponseBody
+	public List<Egresos> getEgresosUnidad(@RequestParam int id_unidad,@RequestParam String year){
+		List<Egresos> egresos = StreamSupport 
+				.stream(egresosRepository.findEgresosByUnidad(id_unidad, year).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return egresos;
+	}
+	
+	@GetMapping("/getegresosYear")
+	@ResponseBody
+	public List<Egresos> getEgresosYear(@RequestParam String year){
+		List<Egresos> egresos = StreamSupport
+				.stream(egresosRepository.findAllEgresosByYear(year).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return egresos;
+	}
+	
+	@GetMapping("/getegresosByDate")
+	@ResponseBody
+	public List<Egresos> getEgresosDate(@RequestParam int id_cuenta, String fecha){
+		List<Egresos> egresos = StreamSupport
+				.stream(egresosRepository.findEgresosByDateM(id_cuenta, fecha).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return egresos; 
+	}
+	
 
 }

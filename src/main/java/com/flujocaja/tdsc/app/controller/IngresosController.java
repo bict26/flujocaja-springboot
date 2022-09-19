@@ -115,4 +115,16 @@ public class IngresosController {
 		return ingresos; 
 	}
 
+	
+	@GetMapping("/getingresosUnidad")
+	@ResponseBody
+	public List<Ingresos> getIngresosUnidad(@RequestParam int id_unidad,@RequestParam String year){
+		List <Ingresos> ingresos = StreamSupport 
+				.stream(ingresosRepository.findIngresosByUnidad(id_unidad, year).spliterator(), false)
+				.collect(Collectors.toList());
+		
+		return ingresos;
+	}
+
+
 }
